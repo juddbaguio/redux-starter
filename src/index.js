@@ -1,31 +1,25 @@
-import store from './store';
-import {add_to_cart, remove_to_cart} from './actions';
+import configureStore from './store/configureStore';
+// import {ADD_TO_CART, REMOVE_FROM_CART } from './store/bugs';
+import { ADD_PROJECT, REMOVE_PROJECT } from './store/projects';
 
-console.log(store.getState());
 
-store.dispatch(add_to_cart({
-    name: 'Hairblower',
-    price: 1000,
-    description: 'Blow your hair'
+const store = configureStore();
+
+store.dispatch(ADD_PROJECT({
+    name: 'Coding Bootcamp'
+}))
+store.dispatch(ADD_PROJECT({
+    name: 'Coding Bootcamp1'
+}))
+store.dispatch(ADD_PROJECT({
+    name: 'Coding Bootcamp2'
+}))
+store.dispatch(ADD_PROJECT({
+    name: 'Coding Bootcamp3'
 }));
-console.log(store.getState());
-
-store.dispatch(add_to_cart({
-    name: 'Hair Coloring',
-    price: 500,
-    description: 'Color your hair'
-}))
 
 console.log(store.getState());
 
-store.dispatch(add_to_cart({
-    name: 'Hair Clip',
-    price: 20,
-    description: 'clip your hair'
-}))
-
-console.log(store.getState());
-
-store.dispatch(remove_to_cart(1));
+store.dispatch(REMOVE_PROJECT({id: 2}));
 
 console.log(store.getState());

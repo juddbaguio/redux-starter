@@ -1,47 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// Reducer
-let id = 0;
-const slice = createSlice({
-    name: 'wishlists',
+const bugs = createSlice({
+    name: 'bugs',
     initialState: [],
     reducers: {
-        ADD_TO_CART: (wishlists, action) => {
-            wishlists.push({
-                product_id: ++id,
-                product_name: action.payload.name,
-                price: action.payload.price,
-                description: action.payload.description
+        ADD_BUG: (bugs,action) => {
+            let index = bugs.length - 1;
+            bugs.push({
+                id: index,
+                bug: action.payload.bug,
+                description: action.payload.description,
+                userId: action.payload.userId,
             })
         },
-        REMOVE_FROM_CART: (wishlists,action) => {
-            return wishlists.filter((product) => product.id !== action.payload.id)
+        GET_BUGS: (bugs, action) => {
+            return [...action.payload]
         }
     }
 })
 
-console.log(slice);
-
-// Action Creators
-// export const add_to_cart = createAction('ADD_TO_CART');
-// export const remove_from_cart = createAction('REMOVE_FROM_CART');
-// let id = 0;
-
-// const reducer = createReducer([], {
-//             // key: value
-//             // actions: functions (event => event handler)
-//             ADD_TO_CART: (products,action) => {
-//                 products.push({
-//                     product_id: ++id,
-//                     product_name: action.payload.name,
-//                     price: action.payload.price,
-//                     description: action.payload.description
-//                 });
-//             },
-//             REMOVE_FROMT_CART: (products, action) => {
-//                 return products.filter((product) => product.id !== action.payload.id)
-//             }
-//             // no longer worry about default case
-// });
-export const { ADD_TO_CART, REMOVE_FROM_CART } = slice.actions;
-export default slice.reducer;
+export const {ADD_BUG, GET_BUGS} = bugs.actions;
+export default bugs.reducer;
